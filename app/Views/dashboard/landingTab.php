@@ -2,6 +2,6 @@
 
 <?= $this->section('content'); ?>
 <div class="content-wrapper">
-  Hello <?= findout()['nama']; ?> !
+  Hello <?= findout()['name']; ?> !
 </div>
 <?= $this->endSection(); ?>
