@@ -30,8 +30,6 @@ class Absensi extends BaseController
         $this->a = new Absen();
         $this->j = new Jadwal();
         $this->p = new Pegawai();
-        $this->halaman = $this->halaman;
-        $this->halaman['page'] = "Absensi";
     }
 
     public function index()

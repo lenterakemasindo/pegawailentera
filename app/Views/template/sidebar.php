@@ -97,6 +97,54 @@
   </li>
 
   <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-wallet"></i>
+      <p>
+        Penggajian
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="<?= base_url('menu/slip'); ?>" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Data Slip Gaji</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="<?= base_url('menu/slip/print'); ?>" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Print Slip Gaji</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-file-invoice-dollar"></i>
+      <p>
+        Kasbon
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="<?= base_url('menu/kas'); ?>" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Data Kasbon</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="<?= base_url('menu/kas/tebus'); ?>" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Tebus Kasbon</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
     <a href="<?= base_url('menu/rules'); ?>" class="nav-link">
       <i class="nav-icon fas fa-list-alt"></i>
       <p>

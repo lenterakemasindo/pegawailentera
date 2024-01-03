@@ -21,6 +21,8 @@ class Absen extends BaseController
         $this->p = new p();
         $this->a = new a();
         $this->j = new j();
+        $this->halaman = $this->halaman;
+        $this->halaman['page'] = "Absensi";
     }
 
     public function index()

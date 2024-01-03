@@ -67,6 +67,20 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       $routes->post('absen/masuk', 'Absen::findMasuk');
       $routes->get('absen/keluar', 'Absen::keluar');
       $routes->post('absen/keluar', 'Absen::findKeluar');
+
+      // slip gaji section
+      $routes->get('slip', 'Penggajian::index');
+
+      // kas section
+      $routes->get('kas', 'Kasbon::index');
+      $routes->post('kas', 'Kasbon::insert');
+      $routes->get('kas/tebus/', 'Kasbon::tebus');
+      $routes->get('kas/tebus/(:num)', 'Kasbon::formTebus/$1');
+      $routes->get('kas/tebus/(:num)/view', 'Kasbon::viewTebus/$1');
+      $routes->post('kas/tebus/(:num)', 'Kasbon::tebusProcess/$1');
+      $routes->get('kas/destroy/(:num)', 'kasbon::destroy/$1');
+      $routes->get('kas/edit/(:num)', 'kasbon::edit/$1');
+      $routes->post('kas/edit/(:num)', 'kasbon::update/$1');
     });
   });
 });
