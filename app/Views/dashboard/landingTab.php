@@ -2,6 +2,6 @@
 
 <?= $this->section('content'); ?>
 <div class="content-wrapper">
-  wle
+  Hello <?= findout()['name']; ?>
 </div>
 <?= $this->endSection(); ?>
