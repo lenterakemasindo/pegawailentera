@@ -104,7 +104,7 @@
             ?>
             <td class="bg-dark">
               <p class="text-<?= $result[1]; ?>">
-                <?= $result[0]; ?>
+                <?= $result[0] ?>
               </p>
             </td>
           </tr>
