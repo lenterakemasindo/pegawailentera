@@ -79,8 +79,8 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       $routes->get('kas/tebus/(:num)/view', 'Kasbon::viewTebus/$1');
       $routes->post('kas/tebus/(:num)', 'Kasbon::tebusProcess/$1');
       $routes->get('kas/destroy/(:num)', 'Kasbon::destroy/$1');
-      $routes->get('kas/edit/(:num)', 'kasbon::edit/$1');
-      $routes->post('kas/edit/(:num)', 'kasbon::update/$1');
+      $routes->get('kas/edit/(:num)', 'Kasbon::edit/$1');
+      $routes->post('kas/edit/(:num)', 'Kasbon::update/$1');
     });
   });
 });
