@@ -99,15 +99,23 @@ class Absensi extends BaseController
         if (!isset($_GET['token'])) die(json_encode($data));
         $data['error'] = 'token anda salah';
         if ($_GET['token'] !== "18@b807") die(json_encode($data));
-        $data = [
-            'status' => 1,
-            'result' => [
-                'data_absensi' => 'masuk',
-                'nama_pegawai' => 'firman',
-                'waktu' => '2029/20/20 19:20:21'
-            ],
-            'error' => '',
+
+        $data['status'] = 1;
+        $data['error'] = '';
+        $data['result'] = [
+            'data_absensi' => 'masuk',
+            'nama_pegawai' => 'firman',
+            'waktu' => '2029/20/20 19:20:21'
         ];
+
         echo json_encode($data);
+
+        $this->a->insert([
+            'idp' => 0,
+            'dt' => date('Y-m-d'),
+            'tmp' => date('Y-m-d G:i:s'),
+            'tipe' => '5',
+            'kehadiran' => 0,
+        ]);
     }
 }

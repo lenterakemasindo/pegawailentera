@@ -70,9 +70,6 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       $routes->get('absen/keluar', 'Absen::keluar');
       $routes->post('absen/keluar', 'Absen::findKeluar');
 
-      // slip gaji section
-      $routes->get('slip', 'Penggajian::index');
-
       // kas section
       $routes->get('kas', 'Kasbon::index');
       $routes->post('kas', 'Kasbon::insert');
@@ -83,6 +80,10 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       $routes->get('kas/destroy/(:num)', 'Kasbon::destroy/$1');
       $routes->get('kas/edit/(:num)', 'Kasbon::edit/$1');
       $routes->post('kas/edit/(:num)', 'Kasbon::update/$1');
+
+      // slip gaji section
+      $routes->get('slip', 'Penggajian::index');
+      $routes->post('slip', 'Penggajian::vertivicate');
     });
   });
 });

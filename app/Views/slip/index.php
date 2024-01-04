@@ -32,24 +32,16 @@
           <label class="form-label">Tanggal Mulai</label>
           <input type="date" class="form-control form-control-border" autocomplete="off" name="start">
         </div>
-        <div class="form-group">
-          <label class="form-label">Jumlah Hadir (Hari)</label>
-          <input type="number" class="form-control form-control-border" placeholder="Kosongkan Agar Diisi Otomatis ..." autocomplete="off" name="start">
-        </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label class="form-label">Tanggal Selesai</label>
           <input type="date" class="form-control form-control-border" autocomplete="off" name="end">
         </div>
-        <div class="form-group">
-          <label class="form-label">Jumlah Lembur (Jam)</label>
-          <input type="number" class="form-control form-control-border" placeholder="Masukan Data ..." autocomplete="off" name="start">
-        </div>
       </div>
     </div>
     <div class="form-group">
-      <button class="btn btn-outline-success btn-block btn-lg mt-3"><i class="fas fa-save"></i> Simpan Data</button>
+      <button class="btn btn-outline-success btn-block btn-lg mt-3"><i class="fas fa-save"></i> Buat Data</button>
     </div>
     <?= form_close(); ?>
     <div class="card-footer">
