@@ -9,6 +9,8 @@ $routes->get('/', 'Auth::validating');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/secureLoginForUnsetSessionButSetCookie', 'Auth::logcookie');
 
+$routes->get('/api/absen/absensi/(:num)', 'Absensi::api_absen/$1');
+
 // UnLogged Menu 
 $routes->group('', ['filter' => 'guest'], static function ($routes) {
   $routes->get('/login', 'Auth::form');

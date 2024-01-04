@@ -88,4 +88,26 @@ class Absensi extends BaseController
         session()->setFlashdata('success', 'Data ' . $this->tipe[$tipe] . ' Untuk ' . $findout[0]['nama'] . ' Berhasil Ditambahkan');
         return redirect()->back();
     }
+
+    public function api_absen($unicode)
+    {
+        $data = [
+            'status' => 0,
+            'result' => [],
+            'error' => 'token tidak diketahui',
+        ];
+        if (!isset($_GET['token'])) die(json_encode($data));
+        $data['error'] = 'token anda salah';
+        if ($_GET['token'] !== "18@b807") die(json_encode($data));
+        $data = [
+            'status' => 1,
+            'result' => [
+                'data_absensi' => 'masuk',
+                'nama_pegawai' => 'firman',
+                'waktu' => '2029/20/20 19:20:21'
+            ],
+            'error' => '',
+        ];
+        echo json_encode($data);
+    }
 }
