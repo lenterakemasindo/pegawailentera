@@ -85,6 +85,10 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       // slip gaji section
       $routes->get('slip', 'Penggajian::index');
       $routes->post('slip', 'Penggajian::vertivicate');
+      $routes->get('slip/confirm/(:any)/(:any)', 'Penggajian::find/$1/$2');
+      $routes->post('slip/confirm/(:any)/(:any)', 'Penggajian::post/$1/$2');
+      $routes->post('slip/print', 'Penggajian::preprint');
+      $routes->get('slip/print/(:any)', 'Penggajian::print/$1');
     });
   });
 });

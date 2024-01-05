@@ -20,7 +20,7 @@
     <h3 class="card-title">Tambah Data</h3>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-        <i class="fas fa-minus"></i>
+        <i class="fas fa-plus"></i>
       </button>
     </div>
   </div>
@@ -50,6 +50,32 @@
   </div>
 </div>
 
+<!-- Form Print Data -->
+<div class="card collapsed-card card-info">
+  <div class="card-header">
+    <h3 class="card-title">Print Slip Gaji</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <?= form_open('menu/slip/print'); ?>
+    <div class="form-group">
+      <label class="form-label">Tanggal</label>
+      <input type="date" class="form-control form-control-border" autocomplete="off" name="find">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-outline-success btn-block btn-lg mt-3"><i class="fas fa-save"></i> Cari Data</button>
+    </div>
+    <?= form_close(); ?>
+    <div class="card-footer">
+      <?= env('APPNAME'); ?>
+    </div>
+  </div>
+</div>
+
 <!-- Card Tabel Pegawai -->
 <div class="card card-primary">
   <div class="card-header">
@@ -65,27 +91,25 @@
     <table id="table" class="table table-bordered table-stripped">
       <thead>
         <tr>
-          <th>Nomor</th>
-          <th>Nama Jabatan</th>
+          <th>Tanggal</th>
+          <th>Nama Pegawai</th>
           <th>Opsi</th>
         </tr>
       </thead>
       <tbody>
-        <?php $i = 1 ?>
         <?php foreach ($datatable as $data) : ?>
           <tr>
-            <td><?= $i++; ?></td>
             <td><?= $data['tgl']; ?></td>
-            <td><?= $data['idp']; ?></td>
+            <td><?= $pegawai->find($data['idp'])['nama']; ?></td>
             <td>
               <div class="row">
                 <div class="col">
-                  <a href="<?= base_url('menu/jabatan/destroy/') . $data['id']; ?>" class="btn btn-outline-danger btn-block" title="Hapus Data">
+                  <a href="<?= base_url('menu/slip/destroy/') . $data['id']; ?>" class="btn btn-outline-danger btn-block" title="Hapus Data">
                     <i class="fas fa-trash"></i>
                   </a>
                 </div>
                 <div class="col">
-                  <a href="<?= base_url('menu/jabatan/edit/') . $data['id']; ?>" class="btn btn-outline-warning btn-block" title="Ubah Data">
+                  <a href="<?= base_url('menu/slip/edit/') . $data['id']; ?>" class="btn btn-outline-warning btn-block" title="Ubah Data">
                     <i class="fas fa-edit"></i>
                   </a>
                 </div>
@@ -100,4 +124,10 @@
     <?= env('APPNAME'); ?>
   </div>
 </div>
+<?php if (isset($date) and isset($redirect)) : ?>
+  <script>
+    window.open("<?= base_url('menu/slip/print/') . $date ?>");
+    window.location.replace("<?= base_url('menu/slip/') ?>")
+  </script>
+<?php endif ?>
 <?= $this->endSection(); ?>
