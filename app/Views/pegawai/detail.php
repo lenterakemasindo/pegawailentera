@@ -182,11 +182,19 @@
       <i class="fas fa-sync"></i> Reset Pw
     </a>
   </div>
-  <div class="col">
-    <a href="<?= base_url('menu/pegawai/resetipv5/' . $inspect->id); ?> " class="btn btn-outline-danger btn-block" aria-disabled="true">
-      <i class="fas fa-sync"></i> Reset IP
-    </a>
-  </div>
+  <?php if ($inspect->ipaddr  !== null) : ?>
+    <div class="col">
+      <a href="<?= base_url('menu/pegawai/resetipv4/' . $inspect->id); ?> " class="btn btn-outline-danger btn-block" aria-disabled="true">
+        <i class="fas fa-sync"></i> Reset UID
+      </a>
+    </div>
+  <?php else : ?>
+    <div class="col">
+      <a href="<?= base_url('menu/pegawai/setipv4/' . $inspect->id); ?> " class="btn btn-outline-danger btn-block" aria-disabled="true">
+        <i class="fas fa-sync"></i> Register UID
+      </a>
+    </div>
+  <?php endif; ?>
   <?php if ($inspect->leave_at  === null) : ?>
     <div class="col">
       <a href="<?= base_url('menu/pegawai/resign/' . $inspect->id); ?> " class="btn btn-outline-danger btn-block" aria-disabled="true">

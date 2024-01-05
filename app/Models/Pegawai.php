@@ -12,7 +12,7 @@ class Pegawai extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['unicode', 'user', 'pass', 'jabatan', 'ktp', 'npwp', 'nama', 'gaji', 'lembur', 'bonus', 'pelanggaran', 'teguran', 'promosi', 'remember_token', 'birth_at', 'join_at', 'leave_at'];
+    protected $allowedFields    = ['unicode', 'ipaddr', 'user', 'pass', 'jabatan', 'ktp', 'npwp', 'nama', 'gaji', 'lembur', 'bonus', 'pelanggaran', 'teguran', 'promosi', 'remember_token', 'birth_at', 'join_at', 'leave_at'];
 
     // Dates
     protected $useTimestamps = true;

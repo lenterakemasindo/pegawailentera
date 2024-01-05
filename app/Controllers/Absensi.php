@@ -53,8 +53,7 @@ class Absensi extends BaseController
             'unicode' => $unicode
         ])->findAll();
         // Kembalikan jika kode qr tidak ditemukan
-        session()->setFlashdata('error', 'Kode Qr Tidak Terdaftar');
-        if (!$findout) return redirect()->back();
+        if (!$findout) return ['e', 'UID N/A'];
 
         // Membuat id
         $id = $findout[0]['id'];
@@ -73,8 +72,7 @@ class Absensi extends BaseController
             'dt' => date('Y-m-d'),
             'tipe' => 1
         ])->findAll();
-        session()->setFlashdata('error', 'Anda Sudah Absen Masuk Dan Keluar');
-        if ($findoutValidate) return redirect()->back();
+        if ($findoutValidate) return ['e' => 'Sudah Absen'];
 
         // Menambahkan data absen
         $this->a->insert([
@@ -84,9 +82,11 @@ class Absensi extends BaseController
             'tipe' => $tipe,
             'kehadiran' => 0,
         ]);
-        session()->setFlashdata('error', '');
-        session()->setFlashdata('success', 'Data ' . $this->tipe[$tipe] . ' Untuk ' . $findout[0]['nama'] . ' Berhasil Ditambahkan');
-        return redirect()->back();
+        return [
+            'data_absensi' => ($tipe == 1) ? 'keluar' : 'masuk',
+            'nama_pegawai' => explode(' ', $findout[0]['nama'])[0],
+            'waktu' => date('G:i:s')
+        ];
     }
 
     public function api_absen($unicode)
@@ -96,26 +96,33 @@ class Absensi extends BaseController
             'result' => [],
             'error' => 'token tidak diketahui',
         ];
-        if (!isset($_GET['token'])) die(json_encode($data));
+        if (!isset($_GET['token'])) die(json_encode($data)); // Error jika tidak terdapat token
         $data['error'] = 'token anda salah';
-        if ($_GET['token'] !== "18@b807") die(json_encode($data));
-
+        if ($_GET['token'] !== "18@b807") die(json_encode($data)); // Error jika token salah
+        $data['error'] = 'UID N/A';
+        if ($regist = $this->p->where(['ipaddr' => 'r3g1st@r'])->findAll()) { // jika ada data untuk di registrasi
+            $this->p->update($regist[0]['id'], [
+                'ipaddr' => $unicode
+            ]);
+            $data['status'] = 1;
+            $data['error'] = '';
+            $data['result'] = [
+                'data_absensi' => 'register',
+                'nama_pegawai' => explode(' ', $regist[0]['nama'])[0],
+                'waktu' => date('G:i:s')
+            ];
+            die(json_encode($data));
+        }
+        if (!$find = $this->p->where(['ipaddr' => $unicode])->findAll()) die(json_encode($data)); // Error jika data tidak diketahui
+        $result = $this->absen($find[0]['unicode']);
+        if (isset($result['e'])) {
+            $data['error'] = $result['e'];
+            die(json_encode($data));
+        }
         $data['status'] = 1;
         $data['error'] = '';
-        $data['result'] = [
-            'data_absensi' => 'masuk',
-            'nama_pegawai' => 'firman',
-            'waktu' => '2029/20/20 19:20:21'
-        ];
+        $data['result'] = $result;
 
         echo json_encode($data);
-
-        // $this->a->insert([
-        //     'idp' => 0,
-        //     'dt' => date('Y-m-d'),
-        //     'tmp' => date('Y-m-d G:i:s'),
-        //     'tipe' => '5',
-        //     'kehadiran' => 0,
-        // ]);
     }
 }

@@ -209,7 +209,16 @@ class Pegawai extends BaseController
     public function ip($id)
     {
         $process = $this->database->update($id, [
-            'ip' => null
+            'ipaddr' => null
+        ]);
+
+        return redirect()->route('menu/pegawai');
+    }
+
+    public function ips($id)
+    {
+        $process = $this->database->update($id, [
+            'ipaddr' => 'r3g1st@r',
         ]);
 
         return redirect()->route('menu/pegawai');

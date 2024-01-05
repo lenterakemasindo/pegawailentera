@@ -49,6 +49,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
       $routes->get('pegawai/resign/(:num)', 'Pegawai::resign/$1');
       $routes->get('pegawai/negresign/(:num)', 'Pegawai::negresign/$1');
       $routes->get('pegawai/resetipv4/(:num)', 'Pegawai::ip/$1');
+      $routes->get('pegawai/setipv4/(:num)', 'Pegawai::ips/$1');
 
       // jabatan section
       $routes->get('jabatan', 'Jabatan::index');
