@@ -110,12 +110,12 @@ class Absensi extends BaseController
 
         echo json_encode($data);
 
-        $this->a->insert([
-            'idp' => 0,
-            'dt' => date('Y-m-d'),
-            'tmp' => date('Y-m-d G:i:s'),
-            'tipe' => '5',
-            'kehadiran' => 0,
-        ]);
+        // $this->a->insert([
+        //     'idp' => 0,
+        //     'dt' => date('Y-m-d'),
+        //     'tmp' => date('Y-m-d G:i:s'),
+        //     'tipe' => '5',
+        //     'kehadiran' => 0,
+        // ]);
     }
 }
